@@ -31,7 +31,6 @@ class MovieController extends Controller
             'title'=>$request->title,
             'director'=>$request->director,
             'year'=>$request->year,
-            'duration'=>$request->duration,
             'genre'=>$request->genre,
             'actors'=>$request->actors,
         ]);
@@ -88,9 +87,12 @@ class MovieController extends Controller
 
             $movie->delete();
 
+            $allMovies = Movie::all();
+
             return response()->json([
                 'success' => true,
-                'message' => 'Movie deleted'
+                'message' => 'Movie deleted',
+                'data' => $allMovies
             ], 200);
 
         } 

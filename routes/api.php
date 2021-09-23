@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('allmovies', [MovieController::class, 'index']);
 Route::post('createmovie', [MovieController::class, 'create']);
 Route::post('updatemovie', [MovieController::class, 'update']);
-Route::post('deletemovie', [MovieController::class, 'delete']);
+Route::post('deletemovie', [MovieController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
