@@ -36,10 +36,13 @@ class MovieController extends Controller
         ]);
 
         if ($movie) {
+
+            $allMovies = Movie::all();
+
             return response()->json([
                 'success' => true,
                 'message'=>'Movie created',
-                'data' => $movie
+                'data' => $allMovies
             ], 200);
         } 
 
@@ -49,7 +52,7 @@ class MovieController extends Controller
         ], 500);
     }
 
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request)
     {
         $movie = Movie::find($request->movie_id);
 
@@ -58,10 +61,13 @@ class MovieController extends Controller
             $movieUp = $movie->update(request()->all());
 
             if($movieUp){            
+
+                $allMovies = Movie::all();
+
                 return response()->json([
                     'success' => true,
                     'message'=>'Movie updated',
-                    'user' => $movieUp
+                    'data' => $allMovies
                 ], 200);
             } 
 
