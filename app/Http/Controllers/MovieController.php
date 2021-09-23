@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
 
     public function index()
     {
-        $allMovies = Movie::all();
+        // $allMovies = Movie::all();
+        $allMovies = DB::table('movies')->paginate(5);
 
         if ($allMovies) {
             return response()->json([
