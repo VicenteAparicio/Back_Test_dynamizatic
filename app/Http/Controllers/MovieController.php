@@ -13,12 +13,16 @@ class MovieController extends Controller
     public function index()
     {
         // $allMovies = Movie::all();
-        $allMovies = Movie::paginate(5);
+        $five = Movie::paginate(5); 
+        $all = Movie::all();
+        $length = $all.ob_get_length();
 
         if ($allMovies) {
             return response()->json([
                 'success' => true,
-                'data' => $allMovies
+                'all' => $all,
+                'five' => $five,
+                'length' => $length
             ], 200);
         } 
 
@@ -27,6 +31,23 @@ class MovieController extends Controller
             'messate' => 'Error from database'
         ], 500);
     }
+
+    // public function index()
+    // {
+    //     $allMovies = Movie::all();
+
+    //     if ($allMovies) {
+    //         return response()->json([
+    //             'success' => true,
+    //             'data' => $allMovies
+    //         ], 200);
+    //     } 
+
+    //     return response()->json([
+    //         'success' => false,
+    //         'messate' => 'Error from database'
+    //     ], 500);
+    // }
 
     public function create(Request $request)
     {
